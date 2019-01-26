@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/side-menu.css';
 import './css/pure-min.css';
+import $ from 'jquery';
 
 class App extends Component {
 
@@ -11,7 +12,16 @@ class App extends Component {
     };
   }
 
-
+  componentWillMount(){
+    $.ajax({
+        url:"http://localhost:8080/api/authors",
+        dataType: 'json',
+        success:function(e){
+          this.state = {list:e};
+        }
+      }
+    );
+  }
 
 
 
